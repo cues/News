@@ -44,7 +44,7 @@
                     <li class="nav-item ">
                             <a class="nav-link" href="<?php echo ROOT_URL; ?>users/login">Login</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item new">
                         <a class="nav-link" href="<?php echo ROOT_URL; ?>users/signup">Sign Up</a>
                     </li>
                 <?php endif; ?>
