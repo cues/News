@@ -4,27 +4,28 @@ class UserModel extends Model{
     public function signup(){
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-    if(!$post['password'] == "" || 
-            !$post['name'] == "" || 
-            !$post['email'] == "" ){
-
-                $password = MD5($post['password']);
+        $password = MD5($post['password']);
         
-                if($post['submit']){
-                    $this->query('INSERT INTO users (NAME,EMAIL,PASSWORD) VALUES (?,?,?)');
-                    $this->bind(1,$post['name']);
-                    $this->bind(2,$post['email']);
-                    $this->bind(3,$password);
-                    $this->execute();
-        
-                    if($this->lastInsertId()){
-                        header('Location:'.ROOT_URL);
-                    }
+        if($post['submit']){
+                if($post['password'] == "" || 
+                    $post['name'] == "" || 
+                    $post['email'] == "" ){
+                    Messages::setMsg('error','please fill in all the fields');
+                    return;
                 }
-                return;
-        }else{
-            Message::setMsg('error','please fill in all the fields');
+                
+                        $this->query('INSERT INTO users (NAME,EMAIL,PASSWORD) VALUES (?,?,?)');
+                        $this->bind(1,$post['name']);
+                        $this->bind(2,$post['email']);
+                        $this->bind(3,$password);
+                        $this->execute();
+            
+                        if($this->lastInsertId()){
+                            header('Location:'.ROOT_URL);
+                        }
         }
+        return;
+        
     }
 
 
@@ -35,6 +36,11 @@ class UserModel extends Model{
             $password = MD5($post['password']);
     
             if($post['submit']){
+                if($post['password'] == "" || 
+                    $post['email'] == "" ){
+                    Messages::setMsg('error','please fill in all the fields');
+                    return;
+                }
                 $this->query('SELECT * FROM users where EMAIL = ? AND PASSWORD = ?');
                 $this->bind(1,$post['email']);
                 $this->bind(2,$password);
