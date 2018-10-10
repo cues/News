@@ -1,0 +1,10 @@
+ .postBoxes{
+    height:auto;
+    background: rgba(102,102,102,.2);
+    box-shadow:0 0 2px 0 rgba(23,23,23,.6);
+    width: 700px; 
+    margin:20px auto;
+ }
+ .card-title{
+
+ }

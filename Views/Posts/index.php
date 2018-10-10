@@ -1,6 +1,6 @@
 <div>
     <?php foreach($viewModel as $item) : ?>
-    <div class="card" style="width: 700px; margin:20px auto">
+    <div class="card postBoxes">
         <div class="card-body">
             <h5 class="card-title"><?php echo $item['TITLE']; ?></h5>
 			<small><?php echo $item['DATE']; ?></small>
